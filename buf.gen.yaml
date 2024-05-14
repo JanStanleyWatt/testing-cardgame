@@ -1,0 +1,13 @@
+version: v1
+
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/JanStanleyWatt/testing-cardgame/pkg/gen/go
+plugins:
+  - plugin: go
+    out: pkg/gen/go
+    opt: paths=source_relative
+  - plugin: connect-go
+    out: pkg/gen/go
+    opt: paths=source_relative
