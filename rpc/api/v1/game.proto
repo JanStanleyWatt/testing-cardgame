@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Bidirectional streaming RPCでやり取りするメッセージ
+service GameService {
+  rpc JoinGame(JoinGameRequest) returns (JoinGameResponse) {}
+}
+
+message JoinGameRequest {
+  string name = 1;
+  google.protobuf.Timestamp create_time = 2;
+}
+
+message JoinGameResponse {
+  string message = 1;
+  google.protobuf.Timestamp create_time = 2;
+}
