@@ -4,8 +4,9 @@ package api.v1;
 
 import "google/protobuf/timestamp.proto";
 
-// Bidirectional streaming RPCでやり取りするメッセージ
+// サービス定義
 service GameService {
+  // Unary RPCでやり取りするメッセージ
   rpc JoinGame(JoinGameRequest) returns (JoinGameResponse) {}
 }
 
