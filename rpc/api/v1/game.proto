@@ -12,10 +12,17 @@ service GameService {
 
 message JoinGameRequest {
   string name = 1;
-  google.protobuf.Timestamp create_time = 2;
+
+  // リクエスト時刻をUnix時間で表現
+  google.protobuf.Timestamp request_time = 2;
 }
 
 message JoinGameResponse {
   string message = 1;
-  google.protobuf.Timestamp create_time = 2;
+
+  // レスポンス時刻をUnix時間で表現
+  google.protobuf.Timestamp response_time = 2;
+
+  // 成功フラグ
+  bool success = 3;
 }
