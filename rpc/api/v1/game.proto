@@ -10,6 +10,7 @@ service GameService {
   rpc JoinGame(JoinGameRequest) returns (JoinGameResponse) {}
 }
 
+// JoinGameのリクエスト部分
 message JoinGameRequest {
   string name = 1;
 
@@ -17,6 +18,7 @@ message JoinGameRequest {
   google.protobuf.Timestamp request_time = 2;
 }
 
+// JoinGameのレスポンス部分
 message JoinGameResponse {
   string message = 1;
 
