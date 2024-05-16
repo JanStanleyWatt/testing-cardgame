@@ -25,7 +25,7 @@ go-prebuild:
 # buf側のビルド前処理
 .PHONY: buf-prebuild
 buf-prebuild:
-	cd ${RPCDIR} && buf mod update
+	buf mod update ${RPCDIR}
 	buf lint
 	buf format -w
 	buf generate
