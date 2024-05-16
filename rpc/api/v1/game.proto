@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// サービス定義
+service GameService {
+  // Unary RPCでやり取りするメッセージ
+  rpc JoinGame(JoinGameRequest) returns (JoinGameResponse) {}
+}
+
+message JoinGameRequest {
+  string name = 1;
+
+  // リクエスト時刻をUnix時間で表現
+  google.protobuf.Timestamp request_time = 2;
+}
+
+message JoinGameResponse {
+  string message = 1;
+
+  // レスポンス時刻をUnix時間で表現
+  google.protobuf.Timestamp response_time = 2;
+
+  // 成功フラグ
+  bool success = 3;
+}

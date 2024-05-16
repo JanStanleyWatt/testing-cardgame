@@ -9,5 +9,13 @@ FROM mcr.microsoft.com/devcontainers/go:1-1.22-bookworm
 # RUN go get -x <your-dependency-or-tool>
 # USER root
 
+# Install bin packages for `buf`, `grpcurl`, `protoc-gen-go`, and `protoc-gen-connect-go`
+USER vscode
+RUN go install github.com/bufbuild/buf/cmd/buf@latest
+RUN go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+RUN go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
+USER root
+
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1

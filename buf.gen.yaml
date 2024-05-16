@@ -1,0 +1,13 @@
+version: v1
+
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/JanStanleyWatt/testing-cardgame/dist/autogen/go
+plugins:
+  - plugin: go
+    out: dist/autogen/go
+    opt: paths=source_relative
+  - plugin: connect-go
+    out: dist/autogen/go
+    opt: paths=source_relative
