@@ -8,6 +8,8 @@ import (
 	"connectrpc.com/connect"
 	apiv1 "github.com/JanStanleyWatt/testing-cardgame/dist/autogen/go/api/v1"
 	"github.com/JanStanleyWatt/testing-cardgame/dist/autogen/go/api/v1/apiv1connect"
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -40,6 +42,5 @@ func main() {
 
 	mux.Handle(path, handler)
 
-	// http.ListenAndServe(":8080", h2c.NewHandler(mux, &http2.Server{}))
-	http.ListenAndServe(":8080", mux)
+	http.ListenAndServe(":8080", h2c.NewHandler(mux, &http2.Server{}))
 }
