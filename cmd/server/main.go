@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/JanStanleyWatt/testing-cardgame/cmd/server/logic"
+	"github.com/JanStanleyWatt/testing-cardgame/cmd/server/handler"
 	"github.com/JanStanleyWatt/testing-cardgame/dist/autogen/go/api/v1/apiv1connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 )
 
 func main() {
-	gameserver := &logic.GameServer{}
+	gameserver := &handler.GameServer{}
 	mux := http.NewServeMux()
 
 	path, handler := apiv1connect.NewGameServiceHandler(gameserver)
