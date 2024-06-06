@@ -48,4 +48,4 @@ $(GO_AUTOGENED): $(shell find $(RPCDIR) -type f -name '*.proto' -print)
 # 実行ファイルの削除
 .PHONY: clean
 clean:
-	@rm -rf $(OUTDIR)/*
+	@rm -rf $(OUTDIR)/* $(WORKING)/pkg/autogen/api
