@@ -27,15 +27,15 @@ bufbuild:
 # サーバーのビルド
 $(GO_SRVBIN): $(shell find $(GO_SRVDIR) -type f -name '*.go' -print)
 	gofmt -l -w $?
-	staticcheck $?
-	go vet $?
+	staticcheck $(GO_SRVDIR)/...
+	go vet $(GO_SRVDIR)/...
 	go build -o $@ $(GO_SRVDIR)
 
 # クライアントのビルド
 $(GO_CLIBIN): $(shell find $(GO_CLIDIR) -type f -name '*.go' -print)
 	gofmt -l -w $?
-	staticcheck $?
-	go vet $?
+	staticcheck $(GO_CLIDIR)/...
+	go vet $(GO_CLIDIR)/...
 	go build -o $@ $(GO_CLIDIR)
 
 # buf側のビルド前処理
