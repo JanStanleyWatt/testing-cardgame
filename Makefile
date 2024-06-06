@@ -5,7 +5,7 @@ WORKING:=$(CURDIR)
 
 RPCDIR=$(WORKING)/rpc
 OUTDIR=$(WORKING)/dist
-GO_AUTOGENED=$(OUTDIR)/autogen/go/api/**/*.go
+GO_AUTOGENED=$(WORKING)/pkg/autogen/api/**/*.go
 
 # サーバ側の変数
 GO_SRVDIR=$(WORKING)/cmd/server
