@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"connectrpc.com/connect"
-	apiv1 "github.com/JanStanleyWatt/testing-cardgame/dist/autogen/go/api/v1"
+	apiv1 "github.com/JanStanleyWatt/testing-cardgame/pkg/autogen/api/v1"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

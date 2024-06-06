@@ -5,7 +5,7 @@ WORKING:=$(CURDIR)
 
 RPCDIR=$(WORKING)/rpc
 OUTDIR=$(WORKING)/dist
-AUTOGENED=$(shell find $(OUTDIR)/autogen -type f -name '*.go' -print)
+GO_AUTOGENED=$(WORKING)/pkg/autogen/api/**/*.go
 
 # サーバ側の変数
 GO_SRVDIR=$(WORKING)/cmd/server
@@ -17,24 +17,29 @@ GO_CLIBIN=$(OUTDIR)/cardgame-client
 
 # ビルド
 .PHONY: all
-all: $(AUTOGENED) $(GO_SRVBIN) $(GO_CLIBIN)
+all: $(GO_AUTOGENED) $(GO_SRVBIN) $(GO_CLIBIN)
+
+# protocol bufferのビルド
+.PHONY: bufbuild
+bufbuild: 
+	$(GO_AUTOGENED)
 
 # サーバーのビルド
 $(GO_SRVBIN): $(shell find $(GO_SRVDIR) -type f -name '*.go' -print)
-	go fmt $?
-	staticcheck $?
-	go vet $?
+	gofmt -l -w $?
+	staticcheck $(GO_SRVDIR)/...
+	go vet $(GO_SRVDIR)/...
 	go build -o $@ $(GO_SRVDIR)
 
 # クライアントのビルド
 $(GO_CLIBIN): $(shell find $(GO_CLIDIR) -type f -name '*.go' -print)
-	go fmt $?
-	staticcheck $?
-	go vet $?
+	gofmt -l -w $?
+	staticcheck $(GO_CLIDIR)/...
+	go vet $(GO_CLIDIR)/...
 	go build -o $@ $(GO_CLIDIR)
 
 # buf側のビルド前処理
-$(AUTOGENED): $(shell find $(RPCDIR) -type f -name '*.proto' -print)
+$(GO_AUTOGENED): $(shell find $(RPCDIR) -type f -name '*.proto' -print)
 	buf mod update $(RPCDIR)
 	buf lint
 	buf format -w
@@ -43,4 +48,4 @@ $(AUTOGENED): $(shell find $(RPCDIR) -type f -name '*.proto' -print)
 # 実行ファイルの削除
 .PHONY: clean
 clean:
-	@rm -rf $(OUTDIR)/*
+	@rm -rf $(OUTDIR)/* $(WORKING)/pkg/autogen/api
