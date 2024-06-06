@@ -33,10 +33,7 @@
 			],
 			"settings": {
 				"files.readonlyInclude": {
-					"dist/autogen/**/*": true
-				},
-				"files.watcherExclude": {
-					"**/dist/**": true
+					"pkg/autogen/**/*": true
 				}
 			}
 		}
